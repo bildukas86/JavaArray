@@ -1,0 +1,30 @@
+*{
+  box-sizing: border-box;
+}
+
+/////////////////////////////////
+//backround img
+///////////////////////////////
+.main-container{
+  overflow: auto;
+  background-image: url(/img/IMG20221227102123.jpg);
+  background-size: cover;
+  height: 100vh;
+  .container-frame{
+    padding: 15px;
+    text-align: center;
+  }
+}
+.random-image-container{
+  img{
+    width: 50vw;
+  }
+}
+.left-side-top{
+  margin: auto;
+  background-color: lightblue;
+}
+.right-side-bottom{
+  margin: auto;
+  background-color: yellow;
+}
