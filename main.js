@@ -1,9 +1,9 @@
 const randomImageHolder = document.querySelector('.random-image-container');
-const savedImagesContainer =document.querySelector('.savedImages');
+const savedImagesContainer = document.querySelector('.savedImages');
 let refreshImage = document.querySelector('#refresh');
 const selectButton = document.querySelector('#select');
 let emailAddr = document.querySelector('#email');
-// let imageOnScreen = " "; // temp images link
+
 let imagesStored = []; //person saved images and email to array
 
 
@@ -19,31 +19,38 @@ let randomPage = Math.floor(Math.random() * 10) + 1;
 
 
 function fetchData(url) {
-
   return fetch(url)
             .then(res => res.json())
-
 }
 
 //getting img url
 fetchData('https://picsum.photos/v2/list?page=' + `${randomPage}`+ '&limit=100')
   .then(data => generateImage(data[0].download_url))
 
-
-
-
-
 // ------------------------------------------
 //  HELPER FUNCTIONS
 // ------------------------------------------
 
+// function user(email, link) {
+//   this.email = make;
+//   this.link = model;
+//
+// }
+
+
+
 // create img container
 function generateImage(data) {
   const html = `
-    <img src='${data}' alt>
+    <img class="cuurentImg" src='${data}' alt>
   `;
   randomImageHolder.innerHTML = html;
 }
+
+//display saved images
+
+
+
 
 
 //regenerating new image and storing link
@@ -54,9 +61,9 @@ function fetchRandomImage(){
     .then(data => {
          img.src = data[0].download_url;
     })
-    // .then(imageOnScreen = img.src);
 
 }
+
 
 
 // ------------------------------------------
@@ -75,10 +82,17 @@ selectButton.addEventListener('click', function(){
     const img = randomImageHolder.querySelector('img');
     console.log('not empty');
     imagesStored.push(randomImageHolder.querySelector('img').src);
+    for(i = 0; i < imagesStored.length; i++)
+      {
+    savedImagesContainer.innerHTML += "<img src='"+ imagesStored[i] + "' class='images'></img>";
+      }
+
+
   }else {
     console.log("empty");
 
   }
+
 });
 //
 // console.log(emailAddr.value);

@@ -27,4 +27,13 @@
 .right-side-bottom{
   margin: auto;
   background-color: yellow;
+  width: 100%;
+  height: 200px;
+  .savedImages{
+    .images{
+      width: 100px;
+      height: 100px;
+      padding: 20px;
+    }
+  }
 }
