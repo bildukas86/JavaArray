@@ -30,7 +30,9 @@ function generateImage() {
 
 
 function addEmail(){
-    emailContainer.innerHTML = `<h3 class='email-inputted'>${email.value}<h3>`;
+    const createDiv = document.appendChild("div");
+    createDiv.innerHTML = "";
+
 }
 
 // Function that displays all of the images for a certain email.

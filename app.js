@@ -3,6 +3,8 @@ const savedImages = document.querySelector(".savedImages");
 const refreshBtn = document.querySelector("#refresh");
 const submitBtn = document.querySelector("#select");
 const emailInput = document.querySelector("#email");
+const saveImg = document.querySelector(".saved-images-container");
+const header = document.querySelector(".header");
 let emailsWithImages = {};
 
 // ------------------------------------------
@@ -40,12 +42,12 @@ function checkIfEmailExists(){
       if (`${emailInput.value}` in emailsWithImages) {
         console.log("Taip yra toks emailas");
         object2();
-        // addEmail();
+        addImage();
       } else {
         console.log("nera tokio emailas");
         object1();
         addEmail();
-        // addImage();
+        addImage();
       }
 
 };
@@ -66,21 +68,43 @@ function object2(){
 
 /////////////////////////////////////////////////////////////////////////////////
 //display image from API
-function addImage(data) {
-  const html = `
-    <img src='${data}' alt>
-  `;
-  apiImage.innerHTML = html;
-};
-function addEmail() {
-  const html = `
-    <h3 class='email'>${email.value}<h3>
-
-  `;
-  savedImages.innerHTML = html;
+// function addImage(data) {
+//   const html = `
+//     <img src='${data}' alt>
+//   `;
+//   apiImage.innerHTML = html;
+// };
+// function addEmail() {
+//   const html = `
+//     <h3 class='email'>${email.value}<h3>
+//
+//   `;
+//   savedImages.innerHTML = html;
+// };
+function addEmail(){
+  for (const [key, value] of Object.entries(emailsWithImages)) {
+    const html = `
+      <h3 class='storedImgHeader'> ${key} </h3>
+    `;
+    header.innerHTML = html;
+}
 };
 ///////////////////////////////////////////////////////
+function addImage(){
+  const imgLinks = emailsWithImages[`${emailInput.value}`];
 
+  const html = `
+    <img class="currentImg" src='' alt>
+  `;
+  saveImg.innerHTML = html;
+  
+  // for (i = 0; i < imgLinks.length; i++) {
+  //   const imgLinks = emailsWithImages[`${emailInput.value}`];
+  // var image = document.createElement("img");
+  // image.setAttribute("src", imgLinks[i]);
+  // saveImg.appendChild(image);
+// }
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 //regenerating new image and storing link
