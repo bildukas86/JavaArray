@@ -1,12 +1,9 @@
 const apiImage = document.querySelector(".random-image-container");
+const savedImages = document.querySelector(".savedImages");
 const refreshBtn = document.querySelector("#refresh");
 const submitBtn = document.querySelector("#select");
 const emailInput = document.querySelector("#email");
-
-
-let emailsWithImages = [];
-
-
+let emailsWithImages = {};
 
 // ------------------------------------------
 //  FETCH FUNCTIONS
@@ -34,23 +31,57 @@ function generateImage(data) {
   apiImage.innerHTML = html;
 };
 
+
+////////////////////////////////////////////////////////////////////////////////
+//function cheking or not. if exists add img link.
+////////////////////////////////////////////////////////////////////////////////
+function checkIfEmailExists(){
+
+      if (`${emailInput.value}` in emailsWithImages) {
+        console.log("Taip yra toks emailas");
+        object2();
+        // addEmail();
+      } else {
+        console.log("nera tokio emailas");
+        object1();
+        addEmail();
+        // addImage();
+      }
+
+};
+
 //create object with email and link and add to array
 function object1(){
   let currentImg = apiImage.querySelector("img").src;
-  let user = {
-    email: `${emailInput.value}`,
-    link: `${currentImg}`,
-  }
-  emailsWithImages.push(user)
+  let currentEmail = document.querySelector('#email').value;
+  emailsWithImages[`${emailInput.value}`] = [`${currentImg}`];
+  console.log("added new email nad img");
+}
+//add img link to old email
+function object2(){
+  let currentImg = apiImage.querySelector("img").src;
+  emailsWithImages[`${emailInput.value}`].push(`${currentImg}`)
+  console.log("added to old email nad img");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
+//display image from API
 function addImage(data) {
   const html = `
     <img src='${data}' alt>
   `;
   apiImage.innerHTML = html;
-}
+};
+function addEmail() {
+  const html = `
+    <h3 class='email'>${email.value}<h3>
+
+  `;
+  savedImages.innerHTML = html;
+};
+///////////////////////////////////////////////////////
+
+
 /////////////////////////////////////////////////////////////////////////////////
 //regenerating new image and storing link
 function fetchRandomImage(){
@@ -66,20 +97,15 @@ function fetchRandomImage(){
 //SubmitBtn clicked
 /////////////////////////////////////////////////////////////////////
 
-
-
-
-
 //Event LISTENERS
 
 refresh.addEventListener("click", fetchRandomImage);
 
 submitBtn.addEventListener("click", function(){
   if (emailInput.value.length >= 1 ) {
-    console.log("working");
-      object1();
+
+      checkIfEmailExists();
   } else {
     console.log("please enter your email");
   }
 });
-console.log(emailsWithImages);
