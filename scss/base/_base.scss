@@ -1,39 +1,101 @@
 *{
   box-sizing: border-box;
 }
+h1{
+  font-size: 2rem;
+}
+button{
+  padding: 5px;
+  margin: 15px;
+  width: 120px;
+  // font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  background-color: green;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
 
+
+}
+#email{
+    // height: 47px;
+    // font-size: 1.2rem;
+    width: 90%;
+    font-weight: 600;
+    padding: 5px 15px;
+    border-color: #ccc;
+}
+// .header{
+//   h3{
+//     font-size: 3rem;
+//   }
+// }
 /////////////////////////////////
 //backround img
 ///////////////////////////////
 .main-container{
-  overflow: auto;
   background-image: url(/img/IMG20221227102123.jpg);
   background-size: cover;
-  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+  // background:: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,0.5) 80%);
+  height: 100%;
+  min-height: 100vh;
   .container-frame{
+    -webkit-box-shadow: 0px 0px 100px 58px rgba(89,86,79,1);
+    -moz-box-shadow: 0px 0px 100px 58px rgba(89,86,79,1);
+    box-shadow: 0px 0px 100px 58px rgba(89,86,79,1);
     padding: 15px;
+    margin: 5%;
     text-align: center;
+    min-height: 95%;
+    background-color: white;
   }
 }
 .random-image-container{
-  img{
-    width: 50vw;
+  height: auto;
+  border-radius: 25px;
+  .currentImg{
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
+.buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .left-side-top{
-  margin: auto;
-  background-color: lightblue;
+
+  border: solid 3px black;
+  border-radius: 15px 15px 0 0;
+  margin-bottom: 5px;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
+
+
 }
 .right-side-bottom{
+  border: 3px solid black;
+  border-radius: 0 0 15px 15px;
   margin: auto;
-  background-color: yellow;
   width: 100%;
-  height: 200px;
+  height: auto;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,1);
   .savedImages{
-    .images{
-      width: 100px;
-      height: 100px;
-      padding: 20px;
+    .saved-images-container{
+      .selected{
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+      }
+
     }
   }
 }

@@ -1,0 +1,21 @@
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  h1{
+    width: 100%;
+  }
+  .container-frame{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .left-side-top{
+
+      width: 45%;
+
+
+    }
+    .right-side-bottom{
+      width: 45%;
+    }
+  }
+
+}

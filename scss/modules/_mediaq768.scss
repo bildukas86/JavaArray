@@ -1,0 +1,24 @@
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  #email{
+    width: 50%;
+    margin-right: 50px;
+  }
+  .form-container{
+    justify-content: center;
+    padding: 15px;
+
+  }
+  form{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+
+  }
+  button{
+    margin: 0;
+    margin: 5px;
+
+  }
+
+}

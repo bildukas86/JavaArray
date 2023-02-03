@@ -1,0 +1,25 @@
+
+@media only screen and (min-width: 576px) {
+  .random-image-container{
+
+    .currentImg{
+      padding: 15px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .right-side-bottom{
+
+    .savedImages{
+      .saved-images-container{
+        .selected{
+          width: 150px;
+          height: 150px;
+          padding: 10px;
+        }
+
+      }
+    }
+  }
+}

@@ -67,20 +67,7 @@ function object2(){
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-//display image from API
-// function addImage(data) {
-//   const html = `
-//     <img src='${data}' alt>
-//   `;
-//   apiImage.innerHTML = html;
-// };
-// function addEmail() {
-//   const html = `
-//     <h3 class='email'>${email.value}<h3>
-//
-//   `;
-//   savedImages.innerHTML = html;
-// };
+
 function addEmail(){
   for (const [key, value] of Object.entries(emailsWithImages)) {
     const html = `
@@ -91,19 +78,26 @@ function addEmail(){
 };
 ///////////////////////////////////////////////////////
 function addImage(){
-  const imgLinks = emailsWithImages[`${emailInput.value}`];
 
-  const html = `
-    <img class="currentImg" src='' alt>
-  `;
-  saveImg.innerHTML = html;
-  
-  // for (i = 0; i < imgLinks.length; i++) {
-  //   const imgLinks = emailsWithImages[`${emailInput.value}`];
-  // var image = document.createElement("img");
-  // image.setAttribute("src", imgLinks[i]);
-  // saveImg.appendChild(image);
-// }
+
+var emailImage = emailsWithImages[`${emailInput.value}`];
+
+// Setup the HTML string
+var html = '';
+
+// Loop through each emailImage 
+emailImage.forEach(function (emailImage) {
+
+    html += '<img class="selected" src='+ emailImage +'>';
+});
+
+
+html =  html ;
+
+// Log and inject
+
+document.querySelector('.saved-images-container').innerHTML = html;
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////
