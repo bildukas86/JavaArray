@@ -11,6 +11,7 @@ let emailsWithImages = {};
 //  FETCH FUNCTIONS
 // ------------------------------------------
 let randomPage = Math.floor(Math.random() * 10) + 1;
+let randomId = Math.floor(Math.random() * 100) + 1;
 
 function fetchData(url) {
   return fetch(url)
@@ -19,7 +20,7 @@ function fetchData(url) {
 
 //getting img url
 fetchData('https://picsum.photos/v2/list?page=' + `${randomPage}`+ '&limit=100')
-  .then(data => generateImage(data[0].download_url))
+  .then(data => generateImage(data[`${randomId}`].download_url))
 
 // ------------------------------------------
 //  HELPER FUNCTIONS
@@ -35,7 +36,7 @@ function generateImage(data) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//function cheking or not. if exists add img link.
+//function cheking email if exists add img link to old email.
 ////////////////////////////////////////////////////////////////////////////////
 function checkIfEmailExists(){
 
@@ -43,14 +44,20 @@ function checkIfEmailExists(){
         console.log("Taip yra toks emailas");
         object2();
         addImage();
+        //refresh img if email valid and img saved
+        fetchRandomImage();
       } else {
         console.log("nera tokio emailas");
         object1();
         addEmail();
         addImage();
+        //refresh img if email valid and img saved
+        fetchRandomImage();
       }
 
 };
+
+
 
 //create object with email and link and add to array
 function object1(){
@@ -85,7 +92,7 @@ var emailImage = emailsWithImages[`${emailInput.value}`];
 // Setup the HTML string
 var html = '';
 
-// Loop through each emailImage 
+// Loop through each emailImage
 emailImage.forEach(function (emailImage) {
 
     html += '<img class="selected" src='+ emailImage +'>';
@@ -105,9 +112,10 @@ document.querySelector('.saved-images-container').innerHTML = html;
 function fetchRandomImage(){
   const img = apiImage.querySelector('img');
   const randomPage = Math.floor(Math.random() * 10) + 1;
+  let randomId = Math.floor(Math.random() * 100) + 1;
   fetchData(`https://picsum.photos/v2/list?page=${randomPage}&limit=100`)
     .then(data => {
-         img.src = data[0].download_url;
+         img.src = data[`${randomPage}`].download_url;
     })
 };
 
@@ -120,10 +128,51 @@ function fetchRandomImage(){
 refresh.addEventListener("click", fetchRandomImage);
 
 submitBtn.addEventListener("click", function(){
-  if (emailInput.value.length >= 1 ) {
+  // if (emailInput.value.length >= 1 ) {
 
-      checkIfEmailExists();
-  } else {
-    console.log("please enter your email");
-  }
+      validateEmail();
+
+  // } else {
+  //   console.log("please enter your email");
+  // }
 });
+
+///////////////////////////////////////////////////////////////////
+// checkIfEmailExists();
+///////////////////////////////////////////////////////////////////
+
+// function checkEmpty(){
+//   if (emailsWithImages.length >= 0) {
+//     const rightSideDown = document.getElementsByClassName("right-side-bottom");
+//     rightSideDown.style.border = "3px solid black";
+//   }
+// }
+
+//////////////////////////////////
+///email validation
+////////////////////////////////
+function printError(elemId, hintMsg) {
+    document.getElementById(elemId).innerHTML = hintMsg;
+};
+
+function validateEmail(){
+
+  let inputEmail = document.getElementById('email');
+  if (inputEmail.value === "") {
+    printError("emailErr", "* Email can't be empty.");
+    inputEmail.classList = "error";
+  }else {
+  var emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (emailRegEx.test(inputEmail.value) === false ) {
+    printError("emailErr", "* Please enter a valid email address.");
+    inputEmail.classList = "error";
+  }else {
+    printError("emailErr", "");
+    inputEmail.classList = "valid";
+    checkIfEmailExists();
+    phoneErr = false;
+  }
+  }
+
+
+}

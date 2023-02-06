@@ -3,18 +3,29 @@
   h1{
     width: 100%;
   }
+  form{
+    flex-direction: column;
+  }
+  #email{
+    width: 100%;
+  }
+  .buttons{
+    margin: 10px;
+  }
   .container-frame{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     .left-side-top{
-
       width: 45%;
-
-
+      height: 500px;
+      border-radius: 15px 0 0 0;
     }
     .right-side-bottom{
       width: 45%;
+      min-height: 500px;
+      border-radius: 0 15px 15px 0 !important;
+
     }
   }
 

@@ -22,8 +22,8 @@
           </div>
           <div class="form-container">
             <form class="form" action="" method="post">
-
-              <input id="email" type="email" name="" value="" required placeholder="Your email here..." required>
+              <span id="emailErr"></span>
+              <input id="email" type="email" name="" value="" required placeholder="Your email here..." >
               <div class="buttons">
                 <button id="refresh" type="button" name="button">Refresh Image</button>
                 <button id="select" type="button" name="button">Select</button>
@@ -36,7 +36,10 @@
         </div>
         <div class="right-side-bottom">
           <div class="savedImages">
-            <div class="header"></div>
+            <h1>Selected Images:</h1>
+            <div class="header">
+
+            </div>
             <div class="saved-images-container"></div>
           </div>
         </div>
