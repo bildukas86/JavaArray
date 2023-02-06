@@ -5,6 +5,7 @@ const submitBtn = document.querySelector("#select");
 const emailInput = document.querySelector("#email");
 const saveImg = document.querySelector(".saved-images-container");
 const header = document.querySelector(".header");
+
 let emailsWithImages = {};
 
 // ------------------------------------------
@@ -44,6 +45,7 @@ function checkIfEmailExists(){
         console.log("Taip yra toks emailas");
         object2();
         addImage();
+
         //refresh img if email valid and img saved
         fetchRandomImage();
       } else {
