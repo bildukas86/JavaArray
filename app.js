@@ -1,4 +1,5 @@
 const apiImage = document.querySelector(".random-image-container");
+const currentImg = document.querySelector(".currentImg");
 const savedImages = document.querySelector(".savedImages");
 const refreshBtn = document.querySelector("#refresh");
 const submitBtn = document.querySelector("#select");
@@ -42,14 +43,14 @@ function generateImage(data) {
 function checkIfEmailExists(){
 
       if (`${emailInput.value}` in emailsWithImages) {
-        console.log("Taip yra toks emailas");
-        object2();
-        addImage();
 
+        object2();
+        // addImage();
+        checkImg()
         //refresh img if email valid and img saved
         fetchRandomImage();
       } else {
-        console.log("nera tokio emailas");
+
         object1();
         addEmail();
         addImage();
@@ -59,20 +60,72 @@ function checkIfEmailExists(){
 
 };
 
+////////////////////////////////////////////////////////////////////////////////
+//function cheking if img exists
+////////////////////////////////////////////////////////////////////////////////
+function checkImg(){
+  // for (var i = 0; i < emailsWithImages[`${emailInput.value}`].length; i++) {
+  //   // emailsWithImages[i]
+  //   if (emailsWithImages[i] === `${emailInput.value}`) {
+  //     	console.log("img exists")
+  //
+  //   }else {
+  //     addImage();
+  //   }
+  // }
 
+  for (let i = 0; i < emailsWithImages[`${emailInput.value}`].length; i++) {
+    let currentImg = apiImage.querySelector("img").src;
+    if (emailsWithImages[`${emailInput.value}`][i] === currentImg) {
+      
+      console.log(typeof(emailsWithImages[`${emailInput.value}`][i]))
+
+    } else {
+       console.log(typeof(currentImg));
+       addImage();
+    }
+  }
+  // if (emailsWithImages[`${emailInput.value}`] === `${currentImg}`) {
+  //   console.log("lygu");
+  // } else {
+  //   console.log("nelygu");
+  //   addImage();
+  // }
+  // let currentImg = apiImage.querySelector("img").src;
+  //   for (var i = 0; i < emailsWithImages.length; i++) {
+  //     if (emailsWithImages[`${emailInput.value}`][i] === currentImg) {
+  //       console.log(emailsWithImages[`${emailInput.value}`][i]);
+  //
+  //     }else {
+  //       addImage();
+  //       console.log('nelygu');
+  //     }
+  //   }
+
+  // if (emailsWithImages[`${emailInput.value}`].includes(`${currentImg}`)) {
+  //
+  //   console.log("yes in");
+  // } else {
+  //
+  //   console.log("no not in");
+  //   addImage();
+  // }
+
+};
 
 //create object with email and link and add to array
 function object1(){
   let currentImg = apiImage.querySelector("img").src;
   let currentEmail = document.querySelector('#email').value;
   emailsWithImages[`${emailInput.value}`] = [`${currentImg}`];
-  console.log("added new email nad img");
+
 }
 //add img link to old email
 function object2(){
   let currentImg = apiImage.querySelector("img").src;
-  emailsWithImages[`${emailInput.value}`].push(`${currentImg}`)
-  console.log("added to old email nad img");
+  displayEmail();
+  emailsWithImages[`${emailInput.value}`].push(`${currentImg}`);
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -85,26 +138,21 @@ function addEmail(){
     header.innerHTML = html;
 }
 };
+
+function displayEmail(){
+  const html = `
+    <h3 class='storedImgHeader'> ${emailInput.value} </h3>
+  `;
+  header.innerHTML = html;
+}
 ///////////////////////////////////////////////////////
 function addImage(){
-
-
 var emailImage = emailsWithImages[`${emailInput.value}`];
-
-// Setup the HTML string
 var html = '';
-
-// Loop through each emailImage
 emailImage.forEach(function (emailImage) {
-
     html += '<img class="selected" src='+ emailImage +'>';
 });
-
-
 html =  html ;
-
-// Log and inject
-
 document.querySelector('.saved-images-container').innerHTML = html;
 
 }
@@ -130,13 +178,8 @@ function fetchRandomImage(){
 refresh.addEventListener("click", fetchRandomImage);
 
 submitBtn.addEventListener("click", function(){
-  // if (emailInput.value.length >= 1 ) {
-
       validateEmail();
 
-  // } else {
-  //   console.log("please enter your email");
-  // }
 });
 
 ///////////////////////////////////////////////////////////////////
