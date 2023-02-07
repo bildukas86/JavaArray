@@ -16,13 +16,16 @@ let randomPage = Math.floor(Math.random() * 10) + 1;
 let randomId = Math.floor(Math.random() * 100) + 1;
 
 function fetchData(url) {
-  return fetch(url)
+  return  fetch(url)
             .then(res => res.json())
 }
 
 //getting img url
-fetchData('https://picsum.photos/v2/list?page=' + `${randomPage}`+ '&limit=100')
+ fetchData('https://picsum.photos/v2/list?page=' + `${randomPage}`+ '&limit=100')
   .then(data => generateImage(data[`${randomId}`].download_url))
+  .catch(function(error){
+        alert("Please check your internet connection and click refresh button.");
+      });
 
 // ------------------------------------------
 //  HELPER FUNCTIONS
@@ -44,18 +47,14 @@ function checkIfEmailExists(){
 
       if (`${emailInput.value}` in emailsWithImages) {
 
-        object2();
-        // addImage();
         checkImg()
-        //refresh img if email valid and img saved
-        fetchRandomImage();
+        // fetchRandomImage();
       } else {
-
+        fetchRandomImage();
         object1();
         addEmail();
         addImage();
-        //refresh img if email valid and img saved
-        fetchRandomImage();
+
       }
 
 };
@@ -64,52 +63,16 @@ function checkIfEmailExists(){
 //function cheking if img exists
 ////////////////////////////////////////////////////////////////////////////////
 function checkImg(){
-  // for (var i = 0; i < emailsWithImages[`${emailInput.value}`].length; i++) {
-  //   // emailsWithImages[i]
-  //   if (emailsWithImages[i] === `${emailInput.value}`) {
-  //     	console.log("img exists")
-  //
-  //   }else {
-  //     addImage();
-  //   }
-  // }
 
-  for (let i = 0; i < emailsWithImages[`${emailInput.value}`].length; i++) {
-    let currentImg = apiImage.querySelector("img").src;
-    if (emailsWithImages[`${emailInput.value}`][i] === currentImg) {
-      
-      console.log(typeof(emailsWithImages[`${emailInput.value}`][i]))
+ if (emailsWithImages[`${emailInput.value}`].includes(document.querySelector(".currentImg").src)) {
+   alert("Image selected");
+ } else {
+   object2();
+   addImage();
+   fetchRandomImage();
 
-    } else {
-       console.log(typeof(currentImg));
-       addImage();
-    }
-  }
-  // if (emailsWithImages[`${emailInput.value}`] === `${currentImg}`) {
-  //   console.log("lygu");
-  // } else {
-  //   console.log("nelygu");
-  //   addImage();
-  // }
-  // let currentImg = apiImage.querySelector("img").src;
-  //   for (var i = 0; i < emailsWithImages.length; i++) {
-  //     if (emailsWithImages[`${emailInput.value}`][i] === currentImg) {
-  //       console.log(emailsWithImages[`${emailInput.value}`][i]);
-  //
-  //     }else {
-  //       addImage();
-  //       console.log('nelygu');
-  //     }
-  //   }
+ }
 
-  // if (emailsWithImages[`${emailInput.value}`].includes(`${currentImg}`)) {
-  //
-  //   console.log("yes in");
-  // } else {
-  //
-  //   console.log("no not in");
-  //   addImage();
-  // }
 
 };
 
@@ -164,9 +127,9 @@ function fetchRandomImage(){
   const randomPage = Math.floor(Math.random() * 10) + 1;
   let randomId = Math.floor(Math.random() * 100) + 1;
   fetchData(`https://picsum.photos/v2/list?page=${randomPage}&limit=100`)
-    .then(data => {
-         img.src = data[`${randomPage}`].download_url;
-    })
+    .then(data => {img.src = data[`${randomId}`].download_url;});
+
+
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -182,16 +145,7 @@ submitBtn.addEventListener("click", function(){
 
 });
 
-///////////////////////////////////////////////////////////////////
-// checkIfEmailExists();
-///////////////////////////////////////////////////////////////////
 
-// function checkEmpty(){
-//   if (emailsWithImages.length >= 0) {
-//     const rightSideDown = document.getElementsByClassName("right-side-bottom");
-//     rightSideDown.style.border = "3px solid black";
-//   }
-// }
 
 //////////////////////////////////
 ///email validation
