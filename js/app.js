@@ -65,7 +65,7 @@ function checkIfEmailExists(){
 function checkImg(){
 
  if (emailsWithImages[`${emailInput.value}`].includes(document.querySelector(".currentImg").src)) {
-   alert("Image selected");
+   alert("Image selected, please click Refresh Image button.");
  } else {
    object2();
    addImage();
