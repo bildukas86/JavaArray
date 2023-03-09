@@ -1,10 +1,10 @@
 const apiImage = document.querySelector(".random-image-container");
 const currentImg = document.querySelector(".currentImg");
-const savedImages = document.querySelector(".savedImages");
+// const savedImages = document.querySelector(".savedImages");
 const refreshBtn = document.querySelector("#refresh");
 const submitBtn = document.querySelector("#select");
 const emailInput = document.querySelector("#email");
-const saveImg = document.querySelector(".saved-images-container");
+// const saveImg = document.querySelector(".saved-images-container");
 const header = document.querySelector(".header");
 
 let emailsWithImages = {};
@@ -138,13 +138,20 @@ function fetchRandomImage(){
 
 //Event LISTENERS
 
-refresh.addEventListener("click", fetchRandomImage);
+refreshBtn.addEventListener("click", fetchRandomImage);
 
 submitBtn.addEventListener("click", function(){
       validateEmail();
-
 });
-
+emailInput.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // call function validate email
+    validateEmail();
+  }
+});
 
 
 //////////////////////////////////
