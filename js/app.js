@@ -51,7 +51,7 @@ function checkIfEmailExists(){
         // fetchRandomImage();
       } else {
         fetchRandomImage();
-        object1();
+        assignImgToEmail();
         addEmail();
         addImage();
 
@@ -67,7 +67,7 @@ function checkImg(){
  if (emailsWithImages[`${emailInput.value}`].includes(document.querySelector(".currentImg").src)) {
    alert("Image selected, please click Refresh Image button.");
  } else {
-   object2();
+   addImgToExistingEmail();
    addImage();
    fetchRandomImage();
 
@@ -76,15 +76,15 @@ function checkImg(){
 
 };
 
-//create object with email and link and add to array
-function object1(){
+//assign Image to email
+function assignImgToEmail(){
   let currentImg = apiImage.querySelector("img").src;
   let currentEmail = document.querySelector('#email').value;
   emailsWithImages[`${emailInput.value}`] = [`${currentImg}`];
 
 }
-//add img link to old email
-function object2(){
+//assign Image to existing email
+function addImgToExistingEmail(){
   let currentImg = apiImage.querySelector("img").src;
   displayEmail();
   emailsWithImages[`${emailInput.value}`].push(`${currentImg}`);
