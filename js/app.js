@@ -117,7 +117,7 @@ function addOptionToSelect()
   var html = '';
   listKeys.forEach(function (listKeys) {
 
-      html += `<option selected value=" ${listKeys}"> ${listKeys} </option>`;
+      html += `<option label="" selected value=" ${listKeys}"> ${listKeys} </option>`;
 
   });
   html =  html ;
