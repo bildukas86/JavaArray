@@ -55,13 +55,12 @@ function fetchRandomImage(){
 //function cheking email if exists add img link to old email.
 ////////////////////////////////////////////////////////////////////////////////
 function checkIfEmailExists(){
-
           if (`${emailInput.value}` in emailsWithImages) {
-          checkImg();
+            checkImg();
         } else {
-          fetchRandomImage();
-          addImageEmailToArray();
-          addImage();
+            fetchRandomImage();
+            addImageEmailToArray();
+            addImage();
         }
 };
 
@@ -83,9 +82,9 @@ function checkImg(){
 //display saved images for current email
 ///////////////////////////////////////////////////////
 function addImage(){
-var emailImage = emailsWithImages[`${emailInput.value}`];
-var html = '';
-emailImage.forEach(function (emailImage) {
+  let emailImage = emailsWithImages[`${emailInput.value}`];
+  let html = '';
+    emailImage.forEach(function (emailImage) {
     html += '<img class="selected" src='+ emailImage +'>';
 });
 html =  html ;
